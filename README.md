@@ -1,10 +1,5 @@
 # DISLAYSER
 
-<div align="center">
-  <h3>🚀 Welcome to DISLAYSER! 🚀</h3>
-  <p>A project showcasing skills and tools used in development.</p>
-</div>
-
 ---
 
 ### **💻 Tech Stack**
@@ -44,7 +39,3 @@
 </div>
 
 ---
-
-### **📝 About the Project** 
-
-DISLAYSER is a project designed to demonstrate proficiency in various technologies and tools. Whether you're interested in backend development with PHP and Python, frontend design with JavaScript and Bootstrap, or database management with MySQL and PostgreSQL
