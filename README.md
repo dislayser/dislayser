@@ -21,3 +21,11 @@
     <img width="12" />
     <img src="https://skillicons.dev/icons?i=jquery" height="40" alt="csharp logo"/>
 </div>
+
+### 
+
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=mysql" height="40" alt="csharp logo"/>
+    <img width="12" />
+    <img src="https://skillicons.dev/icons?i=postgresql" height="40" alt="csharp logo"/>
+</div>
