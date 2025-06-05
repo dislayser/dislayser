@@ -11,6 +11,10 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=py" height="40" alt="Python logo"/>
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=docker" height="40" alt="Docker logo"/>
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=git" height="40" alt="Git logo"/>
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=vscode" height="40" alt="VS Code logo"/>
 </div>
 
@@ -22,6 +26,10 @@
   <img src="https://skillicons.dev/icons?i=js" height="40" alt="JavaScript logo"/>
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=npm" height="40" alt="NPM logo"/>
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=pnpm" height="40" alt="PNPM logo"/>
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=nodejs" height="40" alt="NODE.js logo"/>
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=bootstrap" height="40" alt="Bootstrap logo"/>
   <img width="12" />
