@@ -17,7 +17,7 @@
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=vscode" height="40" alt="VS Code logo"/>
   <img width="12" />
-  <img src="https://skillicons.dev/icons?i=elasticsearch" height="40" alt="VS Code logo"/>
+  <img src="https://skillicons.dev/icons?i=elasticsearch" height="40" alt="Elasticsearch logo"/>
 </div>
 
 ---
@@ -40,12 +40,14 @@
 
 ---
 
-### **📦 Databases** 
+### **📦 Storage** 
 
 <div align="center">
   <img src="https://skillicons.dev/icons?i=mysql" height="40" alt="MySQL logo"/>
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=postgresql" height="40" alt="PostgreSQL logo"/>
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=redis" height="40" alt="Redis logo"/>
 </div>
 
 ---
