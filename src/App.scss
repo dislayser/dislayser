@@ -1,0 +1,287 @@
+@import './variables';
+
+.app {
+  min-height: 100%;
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, $bg 70%, transparent);
+  border-bottom: 1px solid $border;
+
+  .topbarInner {
+    @include flex-between($gap-lg);
+    padding: 14px 0;
+  }
+}
+
+.brand {
+  @include flex-center($gap-sm);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  &Mark {
+    width: 34px;
+    height: 34px;
+    border-radius: $radius-sm;
+    background: radial-gradient(60% 60% at 30% 30%, rgba(255, 255, 255, 0.25), transparent),
+      linear-gradient(135deg, $accent, $accent2);
+    box-shadow: $shadow;
+    border: 1px solid color-mix(in srgb, $border 70%, transparent);
+  }
+
+  &Title {
+    font-size: $font-sm;
+    opacity: 0.92;
+
+    span {
+      opacity: 0.65;
+      font-weight: 600;
+    }
+  }
+}
+
+.nav {
+  @include flex-center($gap-lg);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  a {
+    font-size: $font-sm;
+    opacity: 0.85;
+    padding: 8px 10px;
+    border-radius: $radius-full;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: none;
+      background: color-mix(in srgb, $card2 70%, transparent);
+      border: 1px solid color-mix(in srgb, $border 65%, transparent);
+    }
+  }
+}
+
+.btn {
+  @include button-base;
+
+  &Primary {
+    border: 1px solid color-mix(in srgb, $accent 45%, $border);
+    background: linear-gradient(135deg, color-mix(in srgb, $accent 90%, #000), color-mix(in srgb, $accent2 85%, #000));
+  }
+
+  &Ghost {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+.hero {
+  padding: 56px 0 20px;
+
+  &Grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: $gap-2xl;
+    align-items: stretch;
+  }
+
+  &Card {
+    padding: 26px;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -40px -30px auto auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 30%, rgba(124, 92, 255, 0.35), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(33, 212, 253, 0.25), transparent 55%);
+      filter: blur(0px);
+      pointer-events: none;
+    }
+  }
+
+  &Actions {
+    @include flex-center($gap-sm);
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+}
+
+.card {
+  @include card;
+
+  &:has(.heroCard) {
+    @include card;
+  }
+}
+
+.kicker {
+  @include flex-center($gap-sm);
+  font-size: $font-xs;
+  letter-spacing: 0.04em;
+  @include text-uppercase;
+  opacity: 0.78;
+}
+
+.pill {
+  font-size: $font-xs;
+  padding: 7px 10px;
+  border-radius: $radius-full;
+  border: 1px solid color-mix(in srgb, $border 70%, transparent);
+  background: color-mix(in srgb, $card2 80%, transparent);
+}
+
+.h1 {
+  font-size: $font-h1;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  margin: 14px 0 10px;
+}
+
+.lead {
+  font-size: $font-base;
+  @include text-muted;
+  margin: 0 0 18px;
+  max-width: 62ch;
+}
+
+.metaCard {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-lg;
+}
+
+.metaLine {
+  @include flex-between($gap-md);
+  padding: 12px 12px;
+  border-radius: $radius-lg;
+  background: color-mix(in srgb, $card2 75%, transparent);
+  @include meta-border;
+}
+
+.metaLabel {
+  font-size: $font-xs;
+  opacity: 0.8;
+  @include text-uppercase;
+}
+
+.metaValue {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.section {
+  padding: 22px 0;
+
+  &Title {
+    @include flex-between($gap-lg);
+    margin-bottom: 12px;
+
+    h2 {
+      margin: 0;
+      font-size: $font-lg;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      @include text-muted;
+      font-size: $font-sm;
+    }
+  }
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $gap-lg;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $gap-lg;
+}
+
+.itemCard {
+  padding: 16px;
+}
+
+.itemTop {
+  @include flex-between($gap-sm);
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: $font-base;
+  letter-spacing: -0.02em;
+}
+
+.itemDesc {
+  margin: 10px 0 0;
+  @include text-muted;
+  font-size: $font-sm;
+  line-height: 1.55;
+}
+
+.tags {
+  @include flex-center($gap-xs);
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.tag {
+  font-size: $font-xs;
+  padding: 6px 9px;
+  border-radius: $radius-full;
+  border: 1px solid color-mix(in srgb, $border 70%, transparent);
+  background: color-mix(in srgb, $card2 75%, transparent);
+  color: color-mix(in srgb, $muted 92%, $fg);
+}
+
+.footer {
+  padding: 26px 0 40px;
+  @include text-muted;
+  font-size: $font-sm;
+
+  &Inner {
+    @include flex-between($gap-md);
+    border-top: 1px solid $border;
+    padding-top: 16px;
+  }
+}
+
+.smallLinks {
+  @include flex-center($gap-sm);
+  flex-wrap: wrap;
+
+  a {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 920px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}

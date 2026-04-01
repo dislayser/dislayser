@@ -1,0 +1,93 @@
+// Color variables
+$bg: var(--bg);
+$bg2: var(--bg2);
+$fg: var(--fg);
+$muted: var(--muted);
+$card: var(--card);
+$card2: var(--card2);
+$border: var(--border);
+$shadow: var(--shadow);
+$accent: var(--accent);
+$accent2: var(--accent2);
+$danger: var(--danger);
+
+// Spacing
+$gap-xs: 8px;
+$gap-sm: 10px;
+$gap-md: 12px;
+$gap-lg: 14px;
+$gap-xl: 16px;
+$gap-2xl: 22px;
+
+// Border radius
+$radius-sm: 11px;
+$radius-md: 12px;
+$radius-lg: 14px;
+$radius-xl: 18px;
+$radius-full: 999px;
+
+// Font sizes
+$font-xs: 12px;
+$font-sm: 13px;
+$font-base: 15px;
+$font-lg: 18px;
+$font-h1: clamp(34px, 4.2vw, 54px);
+
+// Transitions
+$transition-fast: 120ms ease;
+$transition-btn: transform $transition-fast, background $transition-fast, border-color $transition-fast;
+
+// Mixins
+@mixin flex-center($gap: 0) {
+  display: flex;
+  align-items: center;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin flex-between($gap: 0) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin card {
+  background: color-mix(in srgb, $card 88%, transparent);
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+  box-shadow: $shadow;
+}
+
+@mixin button-base {
+  border: 1px solid color-mix(in srgb, $border 75%, transparent);
+  background: color-mix(in srgb, $card 80%, transparent);
+  color: $fg;
+  padding: 10px 12px;
+  border-radius: $radius-md;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+  transition: $transition-btn;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: color-mix(in srgb, $card2 82%, transparent);
+    border-color: color-mix(in srgb, $accent 35%, $border);
+  }
+}
+
+@mixin text-muted {
+  color: $muted;
+}
+
+@mixin meta-border {
+  border: 1px solid color-mix(in srgb, $border 70%, transparent);
+}
+
+@mixin text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
