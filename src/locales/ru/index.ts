@@ -1,40 +1,4 @@
-interface Link {
-  label: string
-  href: string
-}
-
-interface Highlight {
-  label: string
-  value: string
-}
-
-interface Profile {
-  name: string
-  role: string
-  location: string
-  tagline: string
-  email: string
-  links: Link[]
-  highlights: Highlight[]
-}
-
-interface Project {
-  title: string
-  description: string
-  tags: string[]
-  links: Link[]
-}
-
-interface SkillGroup {
-  group: string
-  items: string[]
-}
-
-interface Experience {
-  title: string
-  period: Date[]
-  bullets: string[]
-}
+import type { Profile, Project, SkillGroup, Experience } from '../../types'
 
 const username: string = 'dislayser'
 
@@ -78,16 +42,17 @@ export const profile: Profile = {
   ],
   highlights: [
     { label: 'Специализация', value: 'PHP · Symfony · Backend' },
-    { label: 'Опыт', value: ((from: Date, to: Date): string => {
+    {
+      label: 'Опыт',
+      value: ((from: Date, to: Date): string => {
+        const diffInSeconds = Math.floor((from.getTime() - to.getTime()) / 1000)
 
-      const diffInSeconds = Math.floor((from.getTime() - to.getTime()) / 1000);
+        const years = Math.trunc(diffInSeconds / (365 * 24 * 60 * 60))
+        const mounths = Math.trunc((diffInSeconds % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60))
 
-      const years = Math.trunc(diffInSeconds / (365 * 24 * 60 * 60));
-      const mounths = Math.trunc((diffInSeconds % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60));
-      
-      return `${years} ${years === 1 ? 'год' : (years >= 2 && years <= 4) ? 'года' : 'лет'}${mounths > 0 ? ` ${mounths} ${mounths === 1 ? 'месяц' : (mounths >= 2 && mounths <= 4) ? 'месяца' : 'месяцев'}` : ''}`;
-
-    })(experience[0].period[1], experience[1].period[0]) },
+        return `${years} ${years === 1 ? 'год' : years >= 2 && years <= 4 ? 'года' : 'лет'}${mounths > 0 ? ` ${mounths} ${mounths === 1 ? 'месяц' : mounths >= 2 && mounths <= 4 ? 'месяца' : 'месяцев'}` : ''}`
+      })(experience[0].period[1], experience[1].period[0]),
+    },
     { label: 'Языки', value: 'RU · EN' },
   ],
 }
@@ -98,9 +63,7 @@ export const projects: Project[] = [
     description:
       'Внутренная корпоративная система управления заказами. Реализована на собственном микрофреймворке. Гибкая архитектура с REST API.',
     tags: ['PHP', 'Realtime', 'SPA', 'Собственный микрофреймворк'],
-    links: [
-      { label: 'Code', href: profile.links[0].href + '/fobos-todo' },
-    ],
+    links: [{ label: 'Code', href: profile.links[0].href + '/fobos-todo' }],
   },
   {
     title: 'TenderGPT',
