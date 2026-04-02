@@ -21,8 +21,8 @@ export const Header: FC<HeaderProps> = ({ profile, theme, onThemeToggle }) => {
         <a className="brand" href="#top" aria-label="На верх страницы">
           <div className="brandMark" />
           <div className="brandTitle">
-            {profile.name} <span><br />
-            {profile.role}</span>
+            {profile.name}
+            <span>{profile.role}</span>
           </div>
         </a>
 
