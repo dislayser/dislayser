@@ -2,13 +2,19 @@
 
 .app {
   min-height: 100%;
+  animation: fadeIn $transition-base;
 }
 
 .container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
+
+  @include respond-to('sm') {
+    width: calc(100% - 20px);
+  }
 }
 
+/* ========== Topbar ========== */
 .topbar {
   position: sticky;
   top: 0;
@@ -16,17 +22,26 @@
   backdrop-filter: blur(12px);
   background: color-mix(in srgb, $bg 70%, transparent);
   border-bottom: 1px solid $border;
+  animation: slideDown $transition-base;
 
   .topbarInner {
     @include flex-between($gap-lg);
     padding: 14px 0;
+
+    @include respond-to('sm') {
+      padding: 10px 0;
+    }
   }
 }
 
+/* ========== Brand ========== */
 .brand {
   @include flex-center($gap-sm);
+  @include link-hover;
   font-weight: 700;
   letter-spacing: -0.02em;
+  text-decoration: none;
+  color: $fg;
 
   &Mark {
     width: 34px;
@@ -36,11 +51,20 @@
       linear-gradient(135deg, $accent, $accent2);
     box-shadow: $shadow;
     border: 1px solid color-mix(in srgb, $border 70%, transparent);
+    transition: all $transition-base;
+
+    .brand:hover & {
+      animation: glow $transition-slow;
+    }
   }
 
   &Title {
     font-size: $font-sm;
     opacity: 0.92;
+
+    @include respond-to('sm') {
+      font-size: $font-xs;
+    }
 
     span {
       opacity: 0.65;
@@ -49,16 +73,31 @@
   }
 }
 
+/* ========== Navigation ========== */
 .nav {
   @include flex-center($gap-lg);
   flex-wrap: wrap;
   justify-content: flex-end;
+  gap: $gap-lg;
+
+  @include respond-to('sm') {
+    gap: $gap-sm;
+  }
 
   a {
     font-size: $font-sm;
     opacity: 0.85;
     padding: 8px 10px;
     border-radius: $radius-full;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    @include respond-to('sm') {
+      font-size: $font-xs;
+      padding: 6px 8px;
+    }
 
     &:hover {
       opacity: 1;
@@ -69,34 +108,66 @@
   }
 }
 
+/* ========== Buttons ========== */
 .btn {
   @include button-base;
 
   &Primary {
     border: 1px solid color-mix(in srgb, $accent 45%, $border);
     background: linear-gradient(135deg, color-mix(in srgb, $accent 90%, #000), color-mix(in srgb, $accent2 85%, #000));
+    font-weight: 700;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(124, 92, 255, 0.25);
+    }
   }
 
   &Ghost {
     background: transparent;
     box-shadow: none;
+    border-color: transparent;
+
+    &:hover {
+      background: color-mix(in srgb, $card 50%, transparent);
+      border-color: color-mix(in srgb, $border 70%, transparent);
+    }
   }
 }
 
+/* ========== Hero Section ========== */
 .hero {
   padding: 56px 0 20px;
+
+  @include respond-to('md') {
+    padding: 40px 0 16px;
+  }
+
+  @include respond-to('sm') {
+    padding: 28px 0 12px;
+  }
 
   &Grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: $gap-2xl;
     align-items: stretch;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: $gap-lg;
+    }
   }
 
   &Card {
     padding: 26px;
     overflow: hidden;
     position: relative;
+    animation: slideUp $transition-base;
+
+    @include respond-to('sm') {
+      padding: 16px;
+    }
 
     &::before {
       content: "";
@@ -115,22 +186,29 @@
     @include flex-center($gap-sm);
     flex-wrap: wrap;
     margin-top: 14px;
+    gap: $gap-sm;
+
+    @include respond-to('sm') {
+      flex-direction: column;
+    }
   }
 }
 
+/* ========== Cards ========== */
 .card {
   @include card;
+  @include card-hover;
 
   &:has(.heroCard) {
     @include card;
+    @include card-hover;
   }
 }
 
 .kicker {
   @include flex-center($gap-sm);
-  font-size: $font-xs;
-  letter-spacing: 0.04em;
   @include text-uppercase;
+  font-size: $font-xs;
   opacity: 0.78;
 }
 
@@ -140,13 +218,20 @@
   border-radius: $radius-full;
   border: 1px solid color-mix(in srgb, $border 70%, transparent);
   background: color-mix(in srgb, $card2 80%, transparent);
+  animation: fadeIn $transition-base;
 }
 
+/* ========== Typography ========== */
 .h1 {
   font-size: $font-h1;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
   margin: 14px 0 10px;
+
+  @include respond-to('sm') {
+    font-size: clamp(26px, 3vw, 40px);
+    margin: 10px 0 8px;
+  }
 }
 
 .lead {
@@ -154,13 +239,21 @@
   @include text-muted;
   margin: 0 0 18px;
   max-width: 62ch;
+  line-height: $line-height-base;
+
+  @include respond-to('sm') {
+    font-size: $font-sm;
+    margin: 0 0 14px;
+  }
 }
 
+/* ========== Meta Card ========== */
 .metaCard {
   padding: 22px;
   display: flex;
   flex-direction: column;
   gap: $gap-lg;
+  animation: slideUp $transition-base;
 }
 
 .metaLine {
@@ -169,6 +262,17 @@
   border-radius: $radius-lg;
   background: color-mix(in srgb, $card2 75%, transparent);
   @include meta-border;
+  transition: all $transition-base;
+
+  @include respond-to('sm') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, $card2 85%, transparent);
+    border-color: color-mix(in srgb, $accent 25%, $border);
+  }
 }
 
 .metaLabel {
@@ -182,64 +286,151 @@
   letter-spacing: -0.01em;
 }
 
+/* ========== Sections ========== */
 .section {
   padding: 22px 0;
+  animation: slideUp $transition-base;
+
+  @include respond-to('sm') {
+    padding: 16px 0;
+  }
 
   &Title {
     @include flex-between($gap-lg);
     margin-bottom: 12px;
 
+    @include respond-to('sm') {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $gap-sm;
+    }
+
     h2 {
       margin: 0;
       font-size: $font-lg;
-      letter-spacing: -0.02em;
+      letter-spacing: $letter-spacing-normal;
+      animation: slideUp $transition-base;
+
+      @include respond-to('sm') {
+        font-size: $font-base;
+      }
     }
 
     p {
       margin: 0;
       @include text-muted;
       font-size: $font-sm;
+
+      @include respond-to('sm') {
+        font-size: $font-xs;
+      }
     }
   }
 }
 
+/* ========== Grids ========== */
 .grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $gap-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+    gap: $gap-sm;
+  }
 }
 
 .grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $gap-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+
+  @include respond-to('sm') {
+    gap: $gap-sm;
+  }
 }
 
+/* ========== Item Card ========== */
 .itemCard {
   padding: 16px;
+  animation: slideUp $transition-base;
+
+  @include respond-to('sm') {
+    padding: 12px;
+  }
+
+  @include card-hover;
 }
 
 .itemTop {
   @include flex-between($gap-sm);
+
+  @include respond-to('sm') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .itemTitle {
   margin: 0;
   font-size: $font-base;
-  letter-spacing: -0.02em;
+  letter-spacing: $letter-spacing-normal;
+  font-weight: 700;
+  transition: color $transition-base;
+
+  @include respond-to('sm') {
+    font-size: $font-sm;
+  }
+
+  .itemCard:hover & {
+    color: $accent;
+  }
 }
 
 .itemDesc {
   margin: 10px 0 0;
   @include text-muted;
   font-size: $font-sm;
-  line-height: 1.55;
+  line-height: $line-height-base;
+  transition: color $transition-base;
+
+  @include respond-to('sm') {
+    font-size: $font-xs;
+    margin: 8px 0 0;
+  }
+
+  .itemCard:hover & {
+    color: $fg;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
 }
 
+/* ========== Tags ========== */
 .tags {
   @include flex-center($gap-xs);
   flex-wrap: wrap;
   margin-top: 12px;
+  gap: $gap-xs;
+
+  @include respond-to('sm') {
+    margin-top: 8px;
+  }
 }
 
 .tag {
@@ -249,38 +440,99 @@
   border: 1px solid color-mix(in srgb, $border 70%, transparent);
   background: color-mix(in srgb, $card2 75%, transparent);
   color: color-mix(in srgb, $muted 92%, $fg);
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: color-mix(in srgb, $accent 50%, $border);
+    background: color-mix(in srgb, $card2 90%, transparent);
+  }
 }
 
+/* ========== Footer ========== */
 .footer {
   padding: 26px 0 40px;
   @include text-muted;
   font-size: $font-sm;
+  animation: slideUp $transition-base;
+
+  @include respond-to('sm') {
+    padding: 18px 0 28px;
+    font-size: $font-xs;
+  }
 
   &Inner {
     @include flex-between($gap-md);
     border-top: 1px solid $border;
     padding-top: 16px;
+
+    @include respond-to('sm') {
+      flex-direction: column;
+      gap: $gap-sm;
+      padding-top: 12px;
+    }
   }
 }
 
+/* ========== Links ========== */
 .smallLinks {
   @include flex-center($gap-sm);
   flex-wrap: wrap;
+  gap: $gap-sm;
+
+  @include respond-to('sm') {
+    gap: $gap-xs;
+  }
 
   a {
     opacity: 0.9;
+    transition: all $transition-base;
+    color: inherit;
+    text-decoration: none;
+
+    @include respond-to('sm') {
+      font-size: $font-xs;
+    }
+
+    &:hover {
+      opacity: 1;
+      color: $accent;
+    }
   }
 }
 
-@media (max-width: 920px) {
+/* ========== Responsive Utilities ========== */
+@include respond-to('md') {
   .heroGrid {
     grid-template-columns: 1fr;
   }
 
   .grid3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include respond-to('sm') {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .section {
+    padding: 16px 0;
+  }
+
+  .hero {
+    padding: 28px 0 12px;
+
+    &Grid {
+      gap: $gap-sm;
+    }
+  }
+
+  .grid3,
   .grid2 {
     grid-template-columns: 1fr;
   }
