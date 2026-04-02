@@ -179,7 +179,14 @@ const App: FC = () => {
                 <article className="card itemCard" key={e.title}>
                   <div className="itemTop">
                     <h3 className="itemTitle">{e.title}</h3>
-                    <span className="pill">{e.period}</span>
+                    <span className="pill">
+                      {Array.isArray(e.period) ? (() => {
+                        const today = new Date()
+                        const isCurrentDate = e.period[1].toDateString() === today.toDateString()
+                        const endDate = isCurrentDate ? 'сейчас' : e.period[1].toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })
+                        return `${e.period[0].toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })} — ${endDate}`
+                      })() : e.period}
+                    </span>
                   </div>
                   <ul className="itemDesc" style={{ marginTop: 12 }}>
                     {e.bullets.map((b) => (

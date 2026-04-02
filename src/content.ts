@@ -32,68 +32,16 @@ interface SkillGroup {
 
 interface Experience {
   title: string
-  period: string
+  period: Date[]
   bullets: string[]
 }
 
-export const profile: Profile = {
-  name: 'Даутов Азат',
-  role: 'PHP-разработчик',
-  location: 'Уфа',
-  tagline:
-    'Backend-разработчик с сильным бэкграундом в системном администрировании. Fullstack специалист (Bootstrap, jQuery). Отлично знаю PHP 8+, Symfony, Yii и собственный микрофреймворк.',
-  email: 'dislayser@mail.ru',
-  links: [
-    { label: 'GitHub', href: 'https://github.com/dislayser' },
-    { label: 'Telegram', href: 'https://t.me/dislayser' },
-    { label: 'Phone', href: 'tel:+79178010398' },
-  ],
-  highlights: [
-    { label: 'Специализация', value: 'PHP · Symfony · Backend · Fullstack' },
-    { label: 'Опыт', value: '4 года 8 месяцев' },
-    { label: 'Языки', value: 'RU (Родной) · EN (B2)' },
-  ],
-}
-
-export const projects: Project[] = [
-  {
-    title: 'SaaS Dashboard',
-    description:
-      'Дашборд с ролями, таблицами, фильтрами и графиками. Оптимизация ререндеров и загрузки данных.',
-    tags: ['React', 'Vite', 'Charts', 'TanStack'],
-    links: [
-      { label: 'Демо', href: 'https://example.com' },
-      { label: 'Код', href: 'https://github.com/username/repo' },
-    ],
-  },
-  {
-    title: 'Landing для продукта',
-    description:
-      'Быстрый лендинг с анимациями, формой заявки и интеграцией аналитики.',
-    tags: ['React', 'CSS', 'A11y'],
-    links: [{ label: 'Сайт', href: 'https://example.com' }],
-  },
-  {
-    title: 'Компонентная библиотека',
-    description:
-      'Набор UI-компонентов с токенами, темизацией, документацией и визуальными тестами.',
-    tags: ['React', 'Design System', 'Storybook'],
-    links: [{ label: 'Код', href: 'https://github.com/username/ui-kit' }],
-  },
-]
-
-export const skills: SkillGroup[] = [
-  { group: 'Backend', items: ['PHP 8+', 'Symfony 7.4', 'Yii', 'собственный микрофреймворк'] },
-  { group: 'Frontend', items: ['JavaScript', 'jQuery', 'Bootstrap 4/5', 'HTML5', 'React', 'Node.js'] },
-  { group: 'Databases', items: ['MySQL', 'PostgreSQL', 'MariaDB', 'Elasticsearch'] },
-  { group: 'DevOps', items: ['Docker', 'Docker Compose', 'Linux', 'Apache', 'Nginx', 'Mikrotik'] },
-  { group: 'Tools', items: ['Git', 'API', 'WebSocket', 'Chart.js', 'Ajax', 'Python'] },
-]
+const username: string = 'dislayser'
 
 export const experience: Experience[] = [
   {
     title: 'PHP-разработчик · ООО "Содериз"',
-    period: 'Март 2025 — сейчас (1 год 2 месяца)',
+    period: [new Date('2025-03-01'), new Date()],
     bullets: [
       'Разработал административную панель с нуля, что сократило время обработки данных менеджерами на 30%.',
       'Провел миграцию легаси-проекта с PHP 7 на PHP 8.4, Symfony 5.4 → 7.4, обновил 40+ зависимостей (+40% производительности).',
@@ -104,7 +52,7 @@ export const experience: Experience[] = [
   },
   {
     title: 'Главный системный администратор · Фобос',
-    period: 'Март 2021 — Август 2024 (3 года 6 месяцев)',
+    period: [new Date('2021-03-01'), new Date('2024-08-31')],
     bullets: [
       'Администрирование Windows, Linux, 1C, сетей и Mikrotik (3 точки по городам в единую ЛВС).',
       'Автоматизировал рутинные задачи на Python/Batch/Bash, сэкономив 10 часов в неделю.',
@@ -113,4 +61,70 @@ export const experience: Experience[] = [
       'Настройка бэкапов, мониторинг работоспособности, реагирование на заявки пользователей.',
     ],
   },
+]
+
+export const profile: Profile = {
+  name: 'Даутов Азат',
+  role: 'Fullstack Developer',
+  location: 'Уфа',
+  tagline:
+    'Backend-разработчик с сильным бэкграундом в системном администрировании. Fullstack специалист (Bootstrap, jQuery). Отлично знаю PHP 8+, Symfony, Yii и собственный микрофреймворк.',
+  email: `${username}@mail.ru`,
+  links: [
+    { label: 'GitHub', href: `https://github.com/${username}` },
+    { label: 'Telegram', href: `https://t.me/${username}` },
+    { label: 'HeadHunter', href: 'https://ufa.hh.ru/resume/4a2de60aff0cd3df380039ed1f7633785a4f43' },
+    { label: 'Phone', href: 'tel:+79178010398' },
+  ],
+  highlights: [
+    { label: 'Специализация', value: 'PHP · Symfony · Backend' },
+    { label: 'Опыт', value: ((from: Date, to: Date): string => {
+
+      const diffInSeconds = Math.floor((from.getTime() - to.getTime()) / 1000);
+
+      const years = Math.trunc(diffInSeconds / (365 * 24 * 60 * 60));
+      const mounths = Math.trunc((diffInSeconds % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60));
+      
+      return `${years} ${years === 1 ? 'год' : (years >= 2 && years <= 4) ? 'года' : 'лет'}${mounths > 0 ? ` ${mounths} ${mounths === 1 ? 'месяц' : (mounths >= 2 && mounths <= 4) ? 'месяца' : 'месяцев'}` : ''}`;
+
+    })(experience[0].period[1], experience[1].period[0]) },
+    { label: 'Языки', value: 'RU · EN' },
+  ],
+}
+
+export const projects: Project[] = [
+  {
+    title: 'ToDo - корпоративная CRM',
+    description:
+      'Внутренная корпоративная система управления заказами. Реализована на собственном микрофреймворке. Гибкая архитектура с REST API.',
+    tags: ['PHP', 'Realtime', 'SPA', 'Собственный микрофреймворк'],
+    links: [
+      { label: 'Code', href: profile.links[0].href + '/fobos-todo' },
+    ],
+  },
+  {
+    title: 'TenderGPT',
+    description:
+      'Электронная торговая площадка. В проекте реализованы: генерация тендеров, автоматическое создание документов, API интеграция, чат-бот для поддержки клиентов.',
+    tags: ['PHP', 'React', 'Symfony', 'Bootstrap', 'Redis'],
+    links: [{ label: 'Сайт', href: 'https://tendergpt.uz' }],
+  },
+  {
+    title: 'Рендер/Редактор форм',
+    description:
+      'Редактор форм для генерации динамических форм с валидацией и обработкой данных.',
+    tags: ['JS', 'Bootstrap', 'jQuery', 'JSON Schema'],
+    links: [
+      { label: 'Code', href: profile.links[0].href + '/todo-form' },
+      { label: 'NPM', href: 'https://www.npmjs.com/package/todo-form' },
+    ],
+  },
+]
+
+export const skills: SkillGroup[] = [
+  { group: 'Backend', items: ['PHP', 'Symfony', 'Yii', 'Собственный микрофреймворк'] },
+  { group: 'Frontend', items: ['JavaScript', 'jQuery', 'Bootstrap', 'React', 'Node.js'] },
+  { group: 'Storage', items: ['MySQL', 'PostgreSQL', 'MariaDB', 'Elasticsearch', 'Redis'] },
+  { group: 'DevOps', items: ['Docker', 'Docker Compose', 'Linux', 'Apache', 'Nginx', 'Mikrotik'] },
+  { group: 'Tools', items: ['Git', 'API', 'WebSocket', 'NPM', 'Vite', 'Python'] },
 ]
