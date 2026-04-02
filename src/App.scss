@@ -27,9 +27,12 @@
   .topbarInner {
     @include flex-between($gap-lg);
     padding: 14px 0;
+    display: flex;
+    align-items: center;
 
     @include respond-to('sm') {
-      padding: 10px 0;
+      padding: 12px 0;
+      gap: $gap-sm;
     }
   }
 }
@@ -42,6 +45,11 @@
   letter-spacing: -0.02em;
   text-decoration: none;
   color: $fg;
+  flex-shrink: 0;
+
+  @include respond-to('sm') {
+    gap: 6px;
+  }
 
   &Mark {
     width: 34px;
@@ -52,6 +60,12 @@
     box-shadow: $shadow;
     border: 1px solid color-mix(in srgb, $border 70%, transparent);
     transition: all $transition-base;
+    flex-shrink: 0;
+
+    @include respond-to('sm') {
+      width: 30px;
+      height: 30px;
+    }
 
     .brand:hover & {
       animation: glow $transition-slow;
@@ -61,14 +75,17 @@
   &Title {
     font-size: $font-sm;
     opacity: 0.92;
+    line-height: 1.2;
 
     @include respond-to('sm') {
-      font-size: $font-xs;
+      font-size: 11px;
+      line-height: 1.1;
     }
 
     span {
       opacity: 0.65;
       font-weight: 600;
+      display: block;
     }
   }
 }
@@ -93,10 +110,12 @@
     background: transparent;
     cursor: pointer;
     transition: all $transition-base;
+    white-space: nowrap;
 
     @include respond-to('sm') {
       font-size: $font-xs;
-      padding: 6px 8px;
+      padding: 10px 8px;
+      white-space: normal;
     }
 
     &:hover {
@@ -112,6 +131,16 @@
 .btn {
   @include button-base;
 
+  @include respond-to('sm') {
+    padding: 8px 10px;
+    font-size: $font-xs;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+
+    &:hover {
+      transform: translateY(-0.5px);
+    }
+  }
+
   &Primary {
     border: 1px solid color-mix(in srgb, $accent 45%, $border);
     background: linear-gradient(135deg, color-mix(in srgb, $accent 90%, #000), color-mix(in srgb, $accent2 85%, #000));
@@ -120,6 +149,12 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 35px rgba(124, 92, 255, 0.25);
+    }
+
+    @include respond-to('sm') {
+      &:hover {
+        transform: translateY(-1px);
+      }
     }
   }
 

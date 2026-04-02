@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import type { Profile } from '../../types'
 import './Header.scss'
 
@@ -9,6 +9,12 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ profile, theme, onThemeToggle }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleNavClick = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <header className="topbar">
       <div className="container topbarInner">
@@ -20,18 +26,35 @@ export const Header: FC<HeaderProps> = ({ profile, theme, onThemeToggle }) => {
           </div>
         </a>
 
-        <nav className="nav" aria-label="Навигация по странице">
-          <a href="#projects">Проекты</a>
-          <a href="#skills">Навыки</a>
-          <a href="#experience">Опыт</a>
-          <a href="#contact">Контакты</a>
+        <button
+          className="menuToggle"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Открыть меню"
+          aria-expanded={isMenuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav 
+          className={`nav ${isMenuOpen ? 'nav--open' : ''}`}
+          aria-label="Навигация по странице"
+        >
+          <a href="#projects" onClick={handleNavClick}>Проекты</a>
+          <a href="#skills" onClick={handleNavClick}>Навыки</a>
+          <a href="#experience" onClick={handleNavClick}>Опыт</a>
+          <a href="#contact" onClick={handleNavClick}>Контакты</a>
           <button
             className="btn btnGhost"
             type="button"
-            onClick={onThemeToggle}
+            onClick={() => {
+              onThemeToggle()
+              handleNavClick()
+            }}
             aria-label="Переключить тему"
           >
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            {theme === 'dark' ? '☀️' : '🌙'}
           </button>
         </nav>
       </div>

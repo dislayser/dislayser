@@ -1,2 +1,85 @@
-// Header styles are in App.scss (global topbar styles)
-// This file is for component-specific Header styles if needed
+@import '../../variables';
+
+/* ========== Menu Toggle Button ========== */
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: -8px;
+
+  span {
+    width: 24px;
+    height: 2px;
+    background: $fg;
+    border-radius: 1px;
+    transition: all $transition-base;
+  }
+
+  @include respond-to('sm') {
+    display: flex;
+  }
+}
+
+/* ========== Mobile Menu ========== */
+@include respond-to('sm') {
+  .nav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: color-mix(in srgb, $bg 95%, transparent);
+    border-bottom: 1px solid $border;
+    backdrop-filter: blur(12px);
+    padding: $gap-lg $gap-sm;
+    flex-direction: column;
+    gap: $gap-sm;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all $transition-base;
+    z-index: 19;
+
+    &--open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    a {
+      padding: 12px $gap-sm;
+      border-radius: $radius-md;
+
+      &:hover {
+        background: color-mix(in srgb, $card 70%, transparent);
+      }
+    }
+
+    .btn {
+      margin-top: 8px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+/* ========== Desktop Menu ========== */
+@media (min-width: 641px) {
+  .menuToggle {
+    display: none;
+  }
+
+  .nav {
+    display: flex;
+    position: static;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    padding: 0;
+    opacity: 1;
+    max-height: none;
+  }
+}
+
