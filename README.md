@@ -5,7 +5,7 @@
 ### **💻 Tech Stack**
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=php" height="40" alt="PHP logo"/>
+  <img src="https://skillicons.dev/icons?i=php" height="40" alt="PHP logo" title="PHP"/>
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=symfony" height="40" alt="Symfony logo"/>
   <img width="12" />
