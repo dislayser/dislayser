@@ -27,6 +27,10 @@
 <div align="center">
   <img src="https://skillicons.dev/icons?i=js" height="40" alt="JavaScript logo"/>
   <img width="12" />
+  <img src="https://skillicons.dev/icons?i=ts" height="40" alt="TypeScript logo"/>
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=react" height="40" alt="React logo"/>
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=npm" height="40" alt="NPM logo"/>
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=pnpm" height="40" alt="PNPM logo"/>
